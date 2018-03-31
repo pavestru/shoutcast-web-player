@@ -1,0 +1,12 @@
+.RecentTrackList__track {
+  margin-top: 1em;
+  clear: both;
+}
+.RecentTrackList__artist {
+  color: gray;
+}
+.RecentTrackList__time {
+  float: right;
+  color: gray;
+  font-size: 75%;
+}
