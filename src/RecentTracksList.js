@@ -8,7 +8,7 @@ const formatTime = time => {
 
 const RecentTracksList = ({ tracks }) => (
   <div className="RecentTrackList">
-    <h3>Posledne hrané:</h3>
+    <h3>Posledné hrané:</h3>
     {tracks.map(({ artist, title, time }) => (
       <div className="RecentTrackList__track" key={time}>
         <div className="RecentTrackList__title">{title}</div>
