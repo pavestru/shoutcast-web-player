@@ -6,7 +6,7 @@ import logo from "./logo.png";
 import Player from "./Player";
 import RecentTracksList from "./RecentTracksList";
 
-import charMap from "./chapMap";
+import charMap from "./charMap";
 
 import { centovaCastUrl, shoutCastUrl } from "./config.json";
 
