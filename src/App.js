@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Helmet } from "react-helmet";
 import { get } from "axios";
 import "./App.css";
 import logo from "./logo.png";
@@ -8,7 +9,7 @@ import RecentTracksList from "./RecentTracksList";
 
 import charMap from "./charMap";
 
-import { centovaCastUrl, shoutCastUrl } from "./config.json";
+import { pageTitle, centovaCastUrl, shoutCastUrl } from "./config.json";
 
 const fixChars = text => {
   let newText = text + "";
@@ -62,6 +63,13 @@ class App extends Component {
     console.log("re-render");
     return (
       <div className="App">
+        <Helmet>
+          <title>
+            {artist || title
+              ? `${title} - ${artist} | ${pageTitle}`
+              : pageTitle}
+          </title>
+        </Helmet>
         <div className="App-header">
           <img src={logo} alt="Logo" />
           <div className="App__live">
