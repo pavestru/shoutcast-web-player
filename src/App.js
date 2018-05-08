@@ -76,7 +76,11 @@ class App extends Component {
             <strong>Práve hrá:</strong>
           </div>
         </div>
-        <Player artist={artist} title={title} streamUrl={shoutCastUrl} />
+        <Player
+          artist={artist}
+          title={title}
+          streamUrl={`${shoutCastUrl}?${Date.now()}`}
+        />
         {!!recentTracks.length && <RecentTracksList tracks={recentTracks} />}
       </div>
     );
