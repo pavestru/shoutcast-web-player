@@ -1,5 +1,15 @@
 .App {
-  margin: 1em 1em;
+  padding: 1em 1em;
+  background-color: white;
+}
+
+@media screen and (min-width: 800px) {
+  .App {
+    margin-left: auto;
+    margin-right: auto;
+    padding: 2em 1em;
+    width: 640px;
+  }
 }
 
 img {
@@ -22,13 +32,4 @@ img {
 
 .App-intro {
   font-size: large;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
 }
