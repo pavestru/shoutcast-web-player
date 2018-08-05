@@ -9,7 +9,12 @@ import RecentTracksList from "./RecentTracksList";
 
 import charMap from "./charMap";
 
-import { pageTitle, centovaCastUrl, shoutCastUrl } from "./config.json";
+import {
+  pageTitle,
+  centovaCastUrl,
+  shoutCastUrl,
+  ignoreTracksContaining
+} from "./config.json";
 
 const fixChars = text => {
   let newText = text + "";
@@ -18,6 +23,15 @@ const fixChars = text => {
     newText = newText.replace(re, charMap[ch]);
   }
   return newText;
+};
+
+const ignoreTracksFilter = track => {
+  for (const substring of ignoreTracksContaining) {
+    if (track.title.toLowerCase().includes(substring.toLowerCase())) {
+      return false;
+    }
+  }
+  return true;
 };
 
 class App extends Component {
@@ -45,11 +59,13 @@ class App extends Component {
       });
 
       this.setState({
-        recentTracks: response.data.data[0].map(trackObj => ({
-          artist: fixChars(trackObj.artist),
-          title: fixChars(trackObj.title),
-          time: trackObj.time
-        }))
+        recentTracks: response.data.data[0]
+          .map(trackObj => ({
+            artist: fixChars(trackObj.artist),
+            title: fixChars(trackObj.title),
+            time: trackObj.time
+          }))
+          .filter(ignoreTracksFilter)
       });
     } catch (error) {
       console.error(error);
