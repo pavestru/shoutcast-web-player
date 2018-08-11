@@ -27,7 +27,10 @@ const fixChars = text => {
 
 const ignoreTracksFilter = track => {
   for (const substring of ignoreTracksContaining) {
-    if (track.title.toLowerCase().includes(substring.toLowerCase())) {
+    if (
+      track.title.toLowerCase().includes(substring.toLowerCase()) ||
+      track.artist.toLowerCase().includes(substring.toLowerCase())
+    ) {
       return false;
     }
   }
