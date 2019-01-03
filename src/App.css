@@ -10,7 +10,7 @@
   .App {
     margin-left: auto;
     margin-right: auto;
-    padding: 3em 1em;
+    padding: 3em 1em 1em;
     width: 640px;
   }
 }
@@ -35,4 +35,17 @@ img {
 
 .App-intro {
   font-size: large;
+}
+
+.other-options {
+  margin: 2em -1em -1em;
+  padding: 0;
+  background-color: gray;
+  color: white;
+  text-align: center;
+  line-height: 200%;
+}
+
+.other-options img {
+  margin: 0.5ex;
 }

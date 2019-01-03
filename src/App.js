@@ -4,6 +4,11 @@ import { get } from "axios";
 import "./App.css";
 import logo from "./logo.png";
 
+import tuneinAsx from "./icons/tunein-asx.png";
+import tuneinPls from "./icons/tunein-pls.png";
+import tuneinQtl from "./icons/tunein-qtl.png";
+import tuneinRam from "./icons/tunein-ram.png";
+
 import Player from "./Player";
 import RecentTracksList from "./RecentTracksList";
 
@@ -13,7 +18,8 @@ import {
   pageTitle,
   centovaCastUrl,
   shoutCastUrl,
-  ignoreTracksContaining
+  ignoreTracksContaining,
+  tuneinLinks
 } from "./config.json";
 
 const fixChars = text => {
@@ -101,6 +107,23 @@ class App extends Component {
           streamUrl={`${shoutCastUrl}?${Date.now()}`}
         />
         {!!recentTracks.length && <RecentTracksList tracks={recentTracks} />}
+        <div className="other-options">
+          Ďalšie možnosti prehrávania:
+          <div>
+            <a href={tuneinLinks.pls}>
+              <img alt="pls" src={tuneinPls} />
+            </a>
+            <a href={tuneinLinks.asx}>
+              <img alt="asx" src={tuneinAsx} />
+            </a>
+            <a href={tuneinLinks.ram}>
+              <img alt="ram" src={tuneinRam} />
+            </a>
+            <a href={tuneinLinks.qtl}>
+              <img alt="qtl" src={tuneinQtl} />
+            </a>
+          </div>
+        </div>
       </div>
     );
   }

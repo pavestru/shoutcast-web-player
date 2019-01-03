@@ -17,7 +17,13 @@ Create a similar config.json file inside src folder:
   "pageTitle": "My Radio",
   "shoutCastUrl": "http://shoutcast.example.com:8888/;",
   "centovaCastUrl": "http://centova.example.com:8080/external/rpc.php",
-  "ignoreTracksContaining": ["call-sign", "key-signature"]
+  "ignoreTracksContaining": ["call-sign", "key-signature"],
+  "tuneinLinks": {
+    "pls": "http://centova.example.com:8080/tunein/radiopokoj.pls",
+    "asx": "http://centova.example.com:8080/tunein/radiopokoj.asx",
+    "ram": "http://centova.example.com:8080/tunein/radiopokoj.ram",
+    "qtl": "http://centova.example.com:8080/tunein/radiopokoj.qtl"
+  }
 }
 ```
 
