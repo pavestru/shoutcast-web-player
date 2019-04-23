@@ -26,7 +26,26 @@ img {
 
 .App-header {
   text-align: center;
+}
+
+.App__live {
+  text-align: center;
   color: #333333;
+}
+
+.App__appStoreLink {
+  height: 40px;
+  line-height: 40px;
+  vertical-align: middle;
+}
+
+.App__appStoreLink a {
+  line-height: 40px;
+}
+
+.App__appStoreLink img {
+  max-width: 32px;
+  vertical-align: middle;
 }
 
 .App-title {

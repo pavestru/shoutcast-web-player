@@ -14,13 +14,18 @@ import RecentTracksList from "./RecentTracksList";
 
 import charMap from "./charMap";
 
-import {
+import config, {
   pageTitle,
   centovaCastUrl,
   shoutCastUrl,
   ignoreTracksContaining,
   tuneinLinks
 } from "./config.json";
+
+const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+
+const isIOS =
+  !!navigator.platform && /iPad|iPhone|iPod/.test(navigator.platform);
 
 const fixChars = text => {
   let newText = text + "";
@@ -97,16 +102,38 @@ class App extends Component {
         </Helmet>
         <div className="App-header">
           <img src={logo} alt="Logo" />
-          <div className="App__live">
-            <strong>Práve hrá:</strong>
-          </div>
         </div>
-        <Player
-          artist={artist}
-          title={title}
-          streamUrl={`${shoutCastUrl}?${Date.now()}`}
-        />
-        {!!recentTracks.length && <RecentTracksList tracks={recentTracks} />}
+        {!isSafari || !config.isSafariNonCompliant ? (
+          <div>
+            <div className="App__live">
+              <strong>Práve hrá:</strong>
+            </div>
+            <Player
+              artist={artist}
+              title={title}
+              streamUrl={`${shoutCastUrl}?${Date.now()}`}
+            />
+            {!!recentTracks.length && (
+              <RecentTracksList tracks={recentTracks} />
+            )}
+          </div>
+        ) : isIOS ? (
+          <div>
+            Pracujeme na našej vlastnej mobilnej aplikácii. Zatiaľ použite
+            aplikáciu
+            <div className="App__appStoreLink">
+              <a href={config.appStoreLink}>
+                <img src={config.appImgUri} />
+                {config.appName}
+              </a>
+            </div>
+          </div>
+        ) : (
+          <div>
+            Ľutujeme, ale rádio nie je možné prehrať v prehliadači Safari.
+            Prosím, použite iný prehliadač (napr. Firefox, Chrome alebo Opera).
+          </div>
+        )}
         <div className="other-options">
           Ďalšie možnosti prehrávania:
           <div>
