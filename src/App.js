@@ -52,7 +52,8 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      recentTracks: []
+      recentTracks: [],
+      streamUrl: `${shoutCastUrl}?${Date.now()}`
     };
   }
 
@@ -86,6 +87,13 @@ class App extends Component {
     }
   };
 
+  handlePause = () => {
+    // Update stream URL in order to invalidate cache
+    this.setState({
+      streamUrl: `${shoutCastUrl}?${Date.now()}`
+    });
+  };
+
   render() {
     const { recentTracks } = this.state;
     const artist = recentTracks.length > 0 ? recentTracks[0].artist : "";
@@ -111,7 +119,8 @@ class App extends Component {
             <Player
               artist={artist}
               title={title}
-              streamUrl={`${shoutCastUrl}?${Date.now()}`}
+              streamUrl={this.state.streamUrl}
+              onPause={this.handlePause}
             />
             {!!recentTracks.length && (
               <RecentTracksList tracks={recentTracks} />
@@ -123,7 +132,7 @@ class App extends Component {
             aplikáciu
             <div className="App__appStoreLink">
               <a href={config.appStoreLink}>
-                <img src={config.appImgUri} />
+                <img alt="Logo" src={config.appImgUri} />
                 {config.appName}
               </a>
             </div>
