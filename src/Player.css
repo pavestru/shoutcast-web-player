@@ -1,7 +1,74 @@
 .Player {
-  text-align: center;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin: 0 -1em 2em -1em;
+  padding: 1em 1.6em;
+  background-color: #e7e7e7;
 }
 
 .Player__artist {
   color: gray;
+}
+
+.Player__text {
+  flex: 1 1 auto;
+}
+
+.Player__button {
+  flex: 0 0 auto;
+  display: block;
+  margin-right: 0.6em;
+  background-color: #aaa;
+  border: 1px solid #aaa;
+  box-shadow: 0 0 6px #aaa;
+  line-height: 26px;
+  padding: 10px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  font-size: 200%;
+  cursor: pointer;
+}
+
+.Player__play {
+  width: 40px;
+  height: 40px;
+}
+.Player__play path {
+  fill: #444;
+}
+
+@-webkit-keyframes playing-shadow {
+  0% {
+    border-color: #aaa;
+    box-shadow: none;
+  }
+  50% {
+    border-color: rgb(77, 80, 255);
+    box-shadow: 0 0 6px rgb(77, 80, 255);
+  }
+  100% {
+    border-color: #aaa;
+    box-shadow: none;
+  }
+}
+
+@keyframes playing-shadow {
+  0% {
+    border-color: #aaa;
+    box-shadow: none;
+  }
+  50% {
+    border-color: rgb(77, 80, 255);
+    box-shadow: 0 0 6px rgb(77, 80, 255);
+  }
+  100% {
+    border-color: #aaa;
+    box-shadow: none;
+  }
+}
+.Player__button--playing {
+  -webkit-animation: playing-shadow ease-in-out 3s infinite;
+  animation: playing-shadow ease-in-out 3s infinite;
 }

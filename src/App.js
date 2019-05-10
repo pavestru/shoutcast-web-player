@@ -39,8 +39,8 @@ const fixChars = text => {
 const ignoreTracksFilter = track => {
   for (const substring of ignoreTracksContaining) {
     if (
-      track.title.toLowerCase().includes(substring.toLowerCase()) ||
-      track.artist.toLowerCase().includes(substring.toLowerCase())
+      track.title.trim().toLowerCase() === substring.trim().toLowerCase() ||
+      track.artist.trim().toLowerCase() === substring.trim().toLowerCase()
     ) {
       return false;
     }
@@ -52,8 +52,7 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      recentTracks: [],
-      streamUrl: `${shoutCastUrl}?${Date.now()}`
+      recentTracks: []
     };
   }
 
@@ -113,13 +112,10 @@ class App extends Component {
         </div>
         {!isSafari || !config.isSafariNonCompliant ? (
           <div>
-            <div className="App__live">
-              <strong>Práve hrá:</strong>
-            </div>
             <Player
               artist={artist}
               title={title}
-              streamUrl={this.state.streamUrl}
+              streamUrl={shoutCastUrl}
               onPause={this.handlePause}
             />
             {!!recentTracks.length && (
