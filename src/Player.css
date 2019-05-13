@@ -15,15 +15,18 @@
   flex: 1 1 auto;
 }
 
-.Player__button {
-  flex: 0 0 auto;
+.Player__flex-fixed {
   display: block;
+  flex: 0 0 auto;
+}
+
+.Player__button {
   margin-right: 0.6em;
   background-color: #aaa;
   border: 1px solid #aaa;
   box-shadow: 0 0 6px #aaa;
   line-height: 26px;
-  padding: 10px;
+  padding: 5px;
   width: 40px;
   height: 40px;
   border-radius: 50%;

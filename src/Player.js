@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useRef } from "react";
 import "./Player.css";
+import { VolumeRocker } from "./VolumeRocker";
 
 const Player = ({ artist, title, streamUrl }) => {
   const [state, setState] = useState("");
@@ -28,7 +29,7 @@ const Player = ({ artist, title, streamUrl }) => {
     <div className="Player">
       <div
         className={
-          "Player__button" +
+          "Player__button Player__flex-fixed" +
           (state === "playing" ? " Player__button--playing" : "")
         }
         onClick={toggle}
@@ -48,6 +49,13 @@ const Player = ({ artist, title, streamUrl }) => {
         <span className="Player__artist">
           <br /> {artist}
         </span>
+      </div>
+      <div className=".Player__flex-fixed">
+        <VolumeRocker
+          onChange={el => {
+            audio.current.volume = el.target.value;
+          }}
+        />
       </div>
     </div>
   );
