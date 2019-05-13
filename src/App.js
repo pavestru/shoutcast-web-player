@@ -27,6 +27,10 @@ const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
 const isIOS =
   !!navigator.platform && /iPad|iPhone|iPod/.test(navigator.platform);
 
+const isMobile = /Android|webOS|iPhone|iPad|iPod|Opera Mini/i.test(
+  navigator.userAgent
+);
+
 const fixChars = text => {
   let newText = text + "";
   for (let ch in charMap) {
@@ -116,6 +120,7 @@ class App extends Component {
               artist={artist}
               title={title}
               streamUrl={shoutCastUrl}
+              isMobile={isMobile}
               onPause={this.handlePause}
             />
             {!!recentTracks.length && (

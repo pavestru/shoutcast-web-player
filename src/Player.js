@@ -2,7 +2,7 @@ import React, { useEffect, useState, useRef } from "react";
 import "./Player.css";
 import { VolumeRocker } from "./VolumeRocker";
 
-const Player = ({ artist, title, streamUrl }) => {
+const Player = ({ artist, title, streamUrl, isMobile }) => {
   const [state, setState] = useState("");
 
   const audio = useRef();
@@ -50,13 +50,15 @@ const Player = ({ artist, title, streamUrl }) => {
           <br /> {artist}
         </span>
       </div>
-      <div className=".Player__flex-fixed">
-        <VolumeRocker
-          onChange={el => {
-            audio.current.volume = el.target.value;
-          }}
-        />
-      </div>
+      {!isMobile && (
+        <div className=".Player__flex-fixed">
+          <VolumeRocker
+            onChange={el => {
+              audio.current.volume = el.target.value;
+            }}
+          />
+        </div>
+      )}
     </div>
   );
 };
