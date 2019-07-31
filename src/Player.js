@@ -1,21 +1,18 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import "./Player.css";
+
+import { usePlayerStateToggle } from "./hooks/usePlayerStateToggle";
 import { VolumeRocker } from "./VolumeRocker";
 
 const Player = ({ artist, title, streamUrl, isMobile }) => {
-  const [state, setState] = useState("");
+  const [state, toggleState] = usePlayerStateToggle();
 
   const audio = useRef();
-
-  const toggle = () => {
-    if (state === "playing") {
-      setState("stopped");
-    } else {
-      setState("playing");
-    }
-  };
+  const playerRef = useRef();
 
   useEffect(() => {
+    playerRef.current.focus();
+
     if (state === "playing") {
       audio.current = new Audio(`${streamUrl}?${Date.now()}`);
       audio.current.play();
@@ -26,13 +23,18 @@ const Player = ({ artist, title, streamUrl, isMobile }) => {
   }, [state]);
 
   return (
-    <div className="Player">
+    <div
+      className="Player"
+      ref={ref => {
+        playerRef.current = ref;
+      }}
+    >
       <div
         className={
           "Player__button Player__flex-fixed" +
           (state === "playing" ? " Player__button--playing" : "")
         }
-        onClick={toggle}
+        onClick={toggleState}
       >
         {state === "playing" ? (
           <svg className="Player__play" viewBox="0 0 24 24">
