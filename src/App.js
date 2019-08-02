@@ -90,13 +90,6 @@ class App extends Component {
     }
   };
 
-  handlePause = () => {
-    // Update stream URL in order to invalidate cache
-    this.setState({
-      streamUrl: `${shoutCastUrl}?${Date.now()}`
-    });
-  };
-
   render() {
     const { recentTracks } = this.state;
     const artist = recentTracks.length > 0 ? recentTracks[0].artist : "";
@@ -121,7 +114,6 @@ class App extends Component {
               title={title}
               streamUrl={shoutCastUrl}
               isMobile={isMobile}
-              onPause={this.handlePause}
             />
             {!!recentTracks.length && (
               <RecentTracksList tracks={recentTracks} />
