@@ -17,7 +17,7 @@ import charMap from "./charMap";
 import config, {
   pageTitle,
   centovaCastUrl,
-  shoutCastUrl,
+  shoutCastUrls,
   ignoreTracksContaining,
   tuneinLinks
 } from "./config.json";
@@ -112,7 +112,7 @@ class App extends Component {
             <Player
               artist={artist}
               title={title}
-              streamUrl={shoutCastUrl}
+              streamUrls={shoutCastUrls}
               isMobile={isMobile}
             />
             {!!recentTracks.length && (

@@ -4,7 +4,7 @@ import "./Player.css";
 import { usePlayerStateToggle } from "./hooks/usePlayerStateToggle";
 import { VolumeRocker } from "./VolumeRocker";
 
-const Player = ({ artist, title, streamUrl, isMobile }) => {
+const Player = ({ artist, title, streamUrls, isMobile }) => {
   const [state, toggleState] = usePlayerStateToggle();
 
   const audio = useRef();
@@ -14,7 +14,7 @@ const Player = ({ artist, title, streamUrl, isMobile }) => {
     playerRef.current.focus();
 
     if (state === "playing") {
-      audio.current = new Audio(`${streamUrl}?${Date.now()}`);
+      audio.current = new Audio(`${streamUrls[0]}?${Date.now()}`);
       audio.current.play();
     } else if (state === "stopped") {
       audio.current.pause();
