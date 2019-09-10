@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import "./Player.css";
 
 import { usePlayerStateToggle } from "./hooks/usePlayerStateToggle";
@@ -6,6 +6,7 @@ import { VolumeRocker } from "./VolumeRocker";
 
 const Player = ({ artist, title, streamUrls, isMobile }) => {
   const [state, toggleState] = usePlayerStateToggle();
+  const [volume, setVolume] = useState(1);
 
   const audio = useRef();
   const playerRef = useRef();
@@ -15,6 +16,7 @@ const Player = ({ artist, title, streamUrls, isMobile }) => {
 
     if (state === "playing") {
       audio.current = new Audio(`${streamUrls[0]}?${Date.now()}`);
+      audio.current.volume = volume;
       audio.current.play();
     } else if (state === "stopped") {
       audio.current.pause();
@@ -56,7 +58,11 @@ const Player = ({ artist, title, streamUrls, isMobile }) => {
         <div className=".Player__flex-fixed">
           <VolumeRocker
             onChange={el => {
-              audio.current.volume = el.target.value;
+              const vol = el.target.value;
+              if (audio.current) {
+                audio.current.volume = vol;
+              }
+              setVolume(vol);
             }}
           />
         </div>
