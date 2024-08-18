@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { Helmet } from "react-helmet";
-import { get } from "axios";
 import "./App.css";
 import logo from "./logo.png";
 
@@ -14,13 +13,14 @@ import RecentTracksList from "./RecentTracksList";
 
 import charMap from "./charMap";
 
-import config, {
+import config from "./config.json";
+const {
   pageTitle,
   centovaCastUrl,
   shoutCastUrls,
   ignoreTracksContaining,
   tuneinLinks
-} from "./config.json";
+} = config;
 
 const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
 
@@ -67,17 +67,17 @@ class App extends Component {
 
   getRecentTracks = async () => {
     try {
-      const response = await get(centovaCastUrl, {
-        params: {
+      const response = await fetch(`${centovaCastUrl}?${ new URLSearchParams({
           m: "recenttracks.get",
           username: "radiopokoj",
           rid: "radiopokoj",
           _: Date.now()
-        }
-      });
+        })
+      }`);
+      const data = await response.json();
 
       this.setState({
-        recentTracks: response.data.data[0]
+        recentTracks: data.data[0]
           .map(trackObj => ({
             artist: fixChars(trackObj.artist),
             title: fixChars(trackObj.title),
